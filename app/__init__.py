@@ -11,6 +11,11 @@ def create_app(config_name):
     app = Flask(__name__)
 
     # Creating the app configurations
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://blankphrase:password@localhost/pitch'
+
+   # Creating the app configurations
 
     # app.config.from_object(config_options[config_name])
     # config_options[config_name].init_app(app)
