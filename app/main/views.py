@@ -1,5 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
 from . import main 
+from flask_login import login_required
 
 @main.route('/')
 def home():
@@ -9,16 +10,7 @@ def home():
         return "Hello Boss!"
 
 
-@main.route('/login', methods=['POST'])
-def do_admin_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
-        session['logged_in'] = True
-    else:
-        flash('wrong password!')
-    return home()
-
-
-@main.route("/logout")
-def logout():
-    session['logged_in'] = False
-    return home()
+@main.route('/pitch/review/new/<int:id>', methods=['GET', 'POST'])
+@login_required
+def new_review(id):
+    pass
