@@ -2,6 +2,7 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 from ..models import User
 from .forms import LoginForm, RegistrationForm
 from . import auth
+from flask_login import login_user, logout_user, login_required
 from .. import db
 
 
@@ -37,4 +38,5 @@ def login():
 @login_required
 def logout():
     logout_user()
+    flash('You have been successfully logged out')
     return redirect(url_for("main.index"))
