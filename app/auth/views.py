@@ -34,6 +34,7 @@ def login():
 
 
 @auth.route("/logout")
+@login_required
 def logout():
-    session['logged_in'] = False
-    return render_template('auth/login.html')
+    logout_user()
+    return redirect(url_for("main.index"))
