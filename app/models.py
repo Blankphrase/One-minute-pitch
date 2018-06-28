@@ -9,33 +9,40 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-class Review:
+class Pitch(db.Model):
+    __tablename__ = 'pitch'
 
-    all_reviews = []
+    id = db.Column(db.Integer, primary_key=True)
+    post = db.Column(db.String(400), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
+    review = db.relationship('Review', backref='pitch', lazy="dynamic")
 
-    def __init__(self, movie_id, title, imageurl, review):
-        self.movie_id = movie_id
-        self.title = title
-        self.imageurl = imageurl
-        self.review = review
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_pitches(cls, id):
+        pitch = Pitch.query.filter_by(category_id=id).all()
+        return pitch
+
+
+class Review(db.Model):
+    __tablename__ = 'review'
+
+    id = db.Column(db.Integer, primary_key = True)
+    post_review = db.Column(db.String(400), index = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitch.id'))
 
     def save_review(self):
-        Review.all_reviews.append(self)
-
-    @classmethod
-    def clear_reviews(cls):
-        Review.all_reviews.clear()
-
+        db.session.add(self)
+        db.session.commit()
     @classmethod
     def get_reviews(cls, id):
-
-        response = []
-
-        for review in cls.all_reviews:
-            if review.movie_id == id:
-                response.append(review)
-
-        return response
+        review = Review.query.filter_by(pitch_id=id).all()
+        return review
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -47,6 +54,8 @@ class User(UserMixin, db.Model):
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
+    pitch =  db.relationship('Pitch', backref = 'user', lazy = "dynamic")
+    review = db.relationship('Review', backref = 'user', lazy = "dynamic")
 
 
     pass_secure = db.Column(db.String(255))
@@ -75,3 +84,15 @@ class Role(db.Model):
     def __repr__(self):
         return f'User {self.name}'
 
+
+class Category(db.Model):
+    __tablename__ = 'categories'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), index=True)
+    pitch = db.relationship('Pitch', backref='category', lazy="dynamic")
+
+    @classmethod
+    def get_categories(cls):
+        categories = Category.query.all()
+        return categories
