@@ -13,6 +13,7 @@ class Pitch(db.Model):
     __tablename__ = 'pitch'
 
     id = db.Column(db.Integer, primary_key=True)
+    username =db.Column(db.String(255), index = True)
     post = db.Column(db.String(400), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
@@ -32,6 +33,7 @@ class Review(db.Model):
     __tablename__ = 'review'
 
     id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(255), index = True)
     post_review = db.Column(db.String(400), index = True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     pitch_id = db.Column(db.Integer, db.ForeignKey('pitch.id'))
