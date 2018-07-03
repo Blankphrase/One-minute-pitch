@@ -27,7 +27,7 @@ You need to have Python3 to run this website.
  
  `pip3 install -r requirements.txt`
 
-Run the website at https://pitchccc.herokuapp.com/
+Run the website at https://minutesss.herokuapp.com/
 
 
 
