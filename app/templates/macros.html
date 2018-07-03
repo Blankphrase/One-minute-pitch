@@ -1,14 +1,36 @@
 <!-- Displaying reviews macro -->
 {% macro displayReviews(review_list) %} 
-{% for review in review_list %}
+    {% for review in review_list %}
+        <div>
+            <li>
+                <h3>{{review.post_review}}</h3>
+                <p>by {{review.user.username}}</p>
+            </li>
+        </div>
+    {% endfor %} 
+{% endmacro %}
 
-<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
-    <h2> {{ review.title}} </h2>
-    <p> {{ review.review | truncate(30) }}</p>
+{% macro displayCategories(category_list) %} 
+    {% for category in category_list %}
+        <li>
+            <a class="btn btn-default" href="/user/category/{{category.id}}">
+                <h3>{{category.name}}</h3>
+            </a>
+        </li>
+    {% endfor %} 
+{% endmacro %}
 
-
-
-
-</div>
-{% endfor %} 
+{% macro displayPitches(pitch_list) %} 
+    {% for pitch in pitch_list %}
+        <div class="well col-xs-12 col-sm-4 col-md-4 col-lg-4 pitch-card">
+            <div class="col-md-8 col-lg-8">
+                <h4>{{pitch.user.username}}</h4>
+            </div>
+            <hr>
+            <div class="row">
+            <p>{{pitch.post}}</p>
+            </div>
+            <a href="/pitch/review/{{pitch.id}}">Reviews</a>
+        </div>
+    {% endfor %} 
 {% endmacro %}

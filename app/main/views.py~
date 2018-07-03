@@ -46,7 +46,7 @@ def update_profile(uname):
     return render_template('profile/update.html', form=form)
 
 
-@main.route('/user/category/advertisement', methods=['GET', 'POST'])
+@main.route('/user/category/advertisements', methods=['GET', 'POST'])
 @login_required
 def advertisement():
     form = AdvertisementForm()
@@ -60,7 +60,7 @@ def advertisement():
     return render_template("advertisement.html", advertisement_form=form, title=title)
 
 
-@main.route('/user/category/project', methods=['GET', 'POST'])
+@main.route('/user/category/projects', methods=['GET', 'POST'])
 @login_required
 def project():
     form = ProjectForm()
@@ -74,7 +74,7 @@ def project():
     return render_template("project.html", project_form=form, title=title)
 
 
-@main.route('/user/category/music', methods=['GET', 'POST'])
+@main.route('/user/category/musics', methods=['GET', 'POST'])
 @login_required
 def music():
     form = MusicForm()
@@ -88,7 +88,7 @@ def music():
     return render_template("music.html", music_form=form, title=title)
 
 
-@main.route('/user/category/interview', methods=['GET', 'POST'])
+@main.route('/user/category/interviews', methods=['GET', 'POST'])
 @login_required
 def interview():
     form = InterviewForm()
@@ -102,7 +102,7 @@ def interview():
     return render_template("interview.html", interview_form=form, title=title)
 
 
-@main.route('/user/category/seduction', methods=['GET', 'POST'])
+@main.route('/user/category/seductions', methods=['GET', 'POST'])
 @login_required
 def seduction():
     form = SeductionForm()
@@ -116,7 +116,7 @@ def seduction():
     return render_template("seduction.html", seduction_form=form, title=title)
 
 
-@main.route('/user/category/sale', methods=['GET', 'POST'])
+@main.route('/user/category/sales', methods=['GET', 'POST'])
 @login_required
 def sale():
     form = SaleForm()
@@ -130,7 +130,7 @@ def sale():
     return render_template("sale.html", sale_form=form, title = title)
 
 
-@main.route('/user/category/general', methods=['GET', 'POST'])
+@main.route('/user/category/generals', methods=['GET', 'POST'])
 @login_required
 def general():
     form = GeneralForm()
@@ -144,7 +144,7 @@ def general():
     return render_template("general.html", general_form=form, title=title)
 
 
-@main.route('/user/category/advertisements')
+@main.route('/user/category/advertisement')
 @login_required
 def advertisements():
     title = 'Advertisement'
@@ -166,7 +166,7 @@ def displayadvertisement(id):
     review = ReviewAdvertisement.query.filter_by(advertisement_id=id).all()
     return render_template('advertpitch.html', advertisement=advertisement, review_form=form, review=review)
 
-@main.route('/user/category/projects')
+@main.route('/user/category/project')
 @login_required
 def projects():
     title = 'Project'
@@ -188,7 +188,7 @@ def displayproject(id):
     review = ReviewProject.query.filter_by(project_id=id).all()
     return render_template('projectpitch.html', project=project, review_form=form, review=review)
 
-@main.route('/user/category/musics')
+@main.route('/user/category/music')
 @login_required
 def musics():
     title = 'Music'
@@ -211,7 +211,7 @@ def displaymusic(id):
     return render_template('musicpitch.html', music=music, review_form=form, review=review)
 
 
-@main.route('/user/category/seductions')
+@main.route('/user/category/seduction')
 @login_required
 def seductions():
     title = 'Seduction'
@@ -234,7 +234,7 @@ def displayseduction(id):
     return render_template('seductpitch.html', seduction=seduction, review_form=form, review=review)
 
 
-@main.route('/user/category/sales')
+@main.route('/user/category/sale')
 @login_required
 def sales():
     title = 'Sale'
@@ -257,7 +257,7 @@ def displaysale(id):
     return render_template('salepitch.html', sale=sale, review_form=form, review=review)
 
 
-@main.route('/user/categor/generals')
+@main.route('/user/categor/general')
 @login_required
 def generals():
     title = 'General'
@@ -299,7 +299,7 @@ def rating():
     return votes
 
 
-@main.route('/user/category/interviews')
+@main.route('/user/category/interview')
 @login_required
 def interviews():
     title = 'Interview'

@@ -69,7 +69,7 @@ class InterviewForm(FlaskForm):
 
 
 class InterviewReviewForm(FlaskForm):
-    review = StringField('Review': ', validators=[Required()])
+    review = StringField('Review: ', validators=[Required()])
     submit = SubmitField('Submit')
 
 

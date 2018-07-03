@@ -115,7 +115,7 @@ class Seduction(db.Model):
 class ReviewSeduction(db.Model):
     __tablename__ = 'reviewseduction'
     id = db.Column(db.Integer, primary_key=True)
-    review = db.Column(db.String(255))
+    comment = db.Column(db.String(255))
     seduction_id = db.Column(db.Integer, db.ForeignKey('seduction.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -138,7 +138,7 @@ class Sale(db.Model):
 class ReviewSale(db.Model):
     __tablename__ = 'reviewsale'
     id = db.Column(db.Integer, primary_key=True)
-    review = db.Column(db.String(255))
+    comment = db.Column(db.String(255))
     sale_id = db.Column(db.Integer, db.ForeignKey('sale.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -161,7 +161,7 @@ class General(db.Model):
 class ReviewGeneral(db.Model):
     __tablename__ = 'reviewgeneral'
     id = db.Column(db.Integer, primary_key=True)
-    review = db.Column(db.String(255))
+    comment = db.Column(db.String(255))
     general_id = db.Column(db.Integer, db.ForeignKey('general.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -185,7 +185,7 @@ class Music(db.Model):
 class ReviewMusic(db.Model):
     __tablename__ = 'reviewmusic'
     id = db.Column(db.Integer, primary_key=True)
-    review = db.Column(db.String(255))
+    comment = db.Column(db.String(255))
     music_id = db.Column(db.Integer, db.ForeignKey("music.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
@@ -234,7 +234,7 @@ class Advertisement(db.Model):
 class ReviewAdvertisement(db.Model):
     __tablename__ = 'reviewadvertisement'
     id = db.Column(db.Integer, primary_key=True)
-    review = db.Column(db.String(255))
+    comment = db.Column(db.String(255))
     advertisement_id = db.Column(db.Integer, db.ForeignKey("advertisement.id"))
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
 
