@@ -12,6 +12,17 @@ class GeneralForm(FlaskForm):
     post = StringField('Title', validators=[Required()])
     body = TextAreaField('Post', validators=[Required()])
     submit = SubmitField('Submit')
+    
+    
+class PitchForm(FlaskForm):
+    pitch_title = StringField('Title', validators=[Required()])
+    content = TextAreaField('Pitch', validators=[Required()])
+    category = SelectField('Category', choices=[('Advertisement','Advertisement Pitch'),('Project','Project Pitch'),('General','General Pitch'),('Sale','Sale Pitch')], validators=[Required()])
+    submit = SubmitField('Write Pitch!')
+
+class CommentForm(FlaskForm):
+    comment_content = TextAreaField('Write a comment', validators=[Required()])
+    submit = SubmitField('Comment')
 
 
 class GeneralReviewForm(FlaskForm):
